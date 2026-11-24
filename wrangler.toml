@@ -1,23 +1,19 @@
 name = "my-vercel-vault"
 main = "worker/index.js"
-compatibility_date = "2025-06-01"
-workers_dev = true
-preview_urls = false
-
-[assets]
-directory = "./dist"
-binding = "ASSETS"
-not_found_handling = "single-page-application"
-run_worker_first = ["/api", "/api/*"]
-
-[vars]
-REGISTRATION_OPEN = "true"
+compatibility_date = "2026-01-01"
 
 [[d1_databases]]
 binding = "DB"
 database_name = "my-vercel-vault-db"
-database_id = "00000000-0000-0000-0000-000000000000" # Replace with the D1 database ID before deploying.
+database_id = "GANTI-DENGAN-ID-D1-ANDA"
 migrations_dir = "worker/migrations"
 
-[triggers]
-crons = ["17 * * * *"]
+[vars]
+REGISTRATION_OPEN = "true"
+
+[assets]
+directory = "dist"
+spa_fallback = "/index.html"
+
+[[rules]]
+pattern = "/api/*"
