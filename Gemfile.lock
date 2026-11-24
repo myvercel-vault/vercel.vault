@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    mini_portile2 (2.8.9)
+    sqlite3 (2.8.1)
+      mini_portile2 (~> 2.8.0)
+    webrick (1.9.2)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  sqlite3 (>= 1.4.2, < 3)
+  webrick (~> 1.9)
+
+BUNDLED WITH
+   2.3.7
