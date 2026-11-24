@@ -13,7 +13,6 @@ REGISTRATION_OPEN = "true"
 
 [assets]
 directory = "dist"
-spa_fallback = "/index.html"
-
-[[rules]]
-pattern = "/api/*"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*"]
