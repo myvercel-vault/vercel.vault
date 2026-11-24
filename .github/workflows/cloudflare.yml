@@ -1,0 +1,61 @@
+name: Deploy the vault to Cloudflare
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - 'worker/**'
+      - 'wrangler.toml'
+      - 'src/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vite.config.js'
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build WebAssembly password module
+        run: npm run build:wasm
+        env:
+          PATH: ${{ github.workspace }}/node_modules/.bin: ${{ env.PATH }}
+
+      - name: Build frontend
+        run: npm run build
+        env:
+          VITE_COMPANY_ADDRESS: ${{ vars.COMPANY_ADDRESS }}
+
+      - name: Install Wrangler
+        run: npm install wrangler@4.167.0 --save-dev --no-audit --no-fund
+
+      - name: Apply D1 migrations (remote)
+        run: npx wrangler d1 migrations apply my-vercel-vault-db --remote --file=worker/migrations/0001_vault.sql
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Deploy Worker
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
