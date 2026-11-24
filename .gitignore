@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.dev.vars
+.env.local
+*.sqlite3
+server/data/
+.wrangler/
+*.log
+.DS_Store
+.env
