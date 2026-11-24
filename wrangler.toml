@@ -5,7 +5,7 @@ compatibility_date = "2026-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "my-vercel-vault-db"
-database_id = "GANTI-DENGAN-ID-D1-ANDA"
+database_id = "ed4adc04-b522-40fd-a936-567ba7818c54"
 migrations_dir = "worker/migrations"
 
 [vars]
