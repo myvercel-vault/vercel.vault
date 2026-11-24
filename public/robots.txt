@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /api/
+Disallow: /vault
+Disallow: /signup
+Disallow: /login
