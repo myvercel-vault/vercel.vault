@@ -1,0 +1,4 @@
+# Copy this file to .dev.vars for local Wrangler development.
+# Generate a stable pepper: openssl rand -hex 32
+# Never commit this file or the pepper to Git.
+VAULT_PEPPER=replace-with-a-random-32-character-hex-string
