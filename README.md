@@ -1,4 +1,4 @@
-# My Vercel Vault
+# MyVercel Vault
 
 Password manager dengan tema hitam putih, logo asal yang dibekalkan pemilik, wallpaper bergerak pada skrin telefon, dan susun atur item mengikut kategori. Projek bebas; tidak bergabung dengan mana-mana perkhidmatan reka bentuk atau hosting yang dirujuk.
 
